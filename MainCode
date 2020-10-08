@@ -1,0 +1,56 @@
+#include <Servo.h>            //The servo library is necessary when controlling motors and servos
+
+char data = 0;                   //Variable for storing received BT data
+byte rudderpin = 9;              //Definition of the pin for PWM signal to the rudder
+byte motorpin = 10;              //Definition of the pin for PWM signal to the motor
+byte greenlightpin = 13;         //Definition of the pin for the green blinking light
+byte redlightpin = 8;            //Definition of the pin for the red blinking light
+
+
+Servo rudder;                 //Create an obj rudder associated to a servo
+Servo motor;                    //Create an obj ESC associated to the motor
+
+void setup() 
+{
+Serial.begin(115200);                     //Sets the data rate in bits per second (baud) for serial data transmission
+pinMode(rudderpin, OUTPUT);               //Sets digital pin 13 as output pin
+pinMode(redlightpin,OUTPUT);              //Sets digital pin 13 as output pin
+rudder.attach(rudderpin);                 //Links the rudder to its pin
+motor.attach(motorpin);                   //Links the motor to its pin
+
+motor.writeMicroseconds(500);            // send "stop" signal to ESC.
+delay(2000);                              // delay to allow the ESC to recognize the stopped signal
+
+}
+
+void loop(){
+
+digitalWrite(greenlightpin, HIGH);   // turn the LED on (HIGH is the voltage level)
+delay(1000);                         // wait for a second
+digitalWrite(greenlightpin, LOW);    // turn the LED off by making the voltage LOW
+delay(1000);                         // wait for a second
+
+digitalWrite(redlightpin, HIGH);   // turn the LED on (HIGH is the voltage level)
+delay(1000);                         // wait for a second
+digitalWrite(redlightpin, LOW);    // turn the LED off by making the voltage LOW
+delay(1000);                         // wait for a second
+
+if(Serial.available() > 0)  // Send data only when you receive data:
+{
+data = Serial.read();      //Read the incoming data and store it into variable data
+
+if(data == 'F'){                  //Checks whether value of data is equal to F 
+
+motor.writeMicroseconds(1450);  // Send signal to ESC.
+}
+
+if(data == 'Q'){                  //Checks whether value of data is equal to F 
+
+motor.writeMicroseconds(1700);  // Send signal to ESC.
+}
+
+else if(data =='S'){
+motor.writeMicroseconds(1500);
+}
+
+}}
