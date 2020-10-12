@@ -4,32 +4,27 @@
 //The servo library is necessary when controlling motors and servos
 #include <Servo.h>            
 
-// Initialization
+// Definition of the pins used
 
-#define enA 9
-#define in1 4
-#define in2 5
-#define rudderpin 6
-#define ledpin 12
-
+#define enA 9                   // Enable line of the motor. 
+#define in1 4                   // Input line 1 of the motor.
+#define in2 5                   // Input line 2 of the motor.
+#define rudderpin 6             // Pin controlling the rudder.
+#define ledpin 12               // Pin controlling the position light.
 
 char data = 0;                   //Variable for storing received BT data
-int motorSpeed = 0;                
 
 Servo rudder;                   //Create an object rudder associated to a servo
 
-void setup() 
-{
+void setup() {
 pinMode(enA, OUTPUT);
 pinMode(in1, OUTPUT);
 pinMode(in2, OUTPUT);
-
 pinMode(rudderpin, OUTPUT);
 
 Serial.begin(115200);                     //Sets the data rate in bits per second (baud) for serial data transmission
 
 rudder.attach(rudderpin);                 //Links the rudder to its pin
-
 }
 
 void loop(){
@@ -41,12 +36,11 @@ delay(1000);                          // wait for a second
 digitalWrite(ledpin, LOW);            // turn the LED off by making the voltage LOW
 delay(1000);                          // wait for a second
 
-// RC CONTROLS
+// BT CONTROLS
 
 if(Serial.available() > 0)            // Send data only when you receive data:
 {
 data = Serial.read();                 //Read the incoming data and store it into variable data
-delay(10);
 
 if(data == 'F'){                      //Checks whether value of data is equal to F 
   digitalWrite(in1, LOW);
@@ -66,7 +60,7 @@ else if(data =='B'){
 }
 
 else if(data =='R'){
-  rudder.write(120);                              
+  rudder.write(130);                              
 }
 
 else if(data =='L'){
@@ -75,6 +69,4 @@ else if(data =='L'){
 else if(data =='C'){
   rudder.write(90);
   }
-
-}
-}
+}}
