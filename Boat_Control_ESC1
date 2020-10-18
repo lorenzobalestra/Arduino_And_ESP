@@ -1,4 +1,5 @@
-\\
+// CONTROL OF THE RC BOAT OVER BLUETOOTH WITH HC-05.
+// HARDWARE CONFIGURATION 2 DOF: RUDDER AND DC BRUSHED MOTOR WITH ESC. NON PROPORTIONAL CONTROLS 
 
 #include <Servo.h>            //The servo library is necessary when controlling motors and servos
 
@@ -19,17 +20,12 @@ pinMode(positionlightpin, OUTPUT);
 rudder.attach(rudderpin);                 //Links the rudder to its pin
 motor.attach(motorpin);                   //Links the motor to its pin
 
-motor.writeMicroseconds(1500);            // send "stop" signal to ESC.
+motor.writeMicroseconds(1500);            // send "stop" signal to ESC. The motor is initialized in a stopped state.
 delay(5000);                              // delay to allow the ESC to recognize the stopped signal
 
 }
 
 void loop(){
-
-digitalWrite(positionlightpin, HIGH);   // turn the LED on (HIGH is the voltage level)
-delay(1000);                            // wait for a second
-digitalWrite(positionlightpin, LOW);    // turn the LED off by making the voltage LOW
-delay(1000);                            // wait for a second
 
 if(Serial.available() > 0)  // Send data only when you receive data:
 {
@@ -59,5 +55,6 @@ else if(data =='C'){
   rudder.write(90);
   }
 
+delay(100);
 }
 }
