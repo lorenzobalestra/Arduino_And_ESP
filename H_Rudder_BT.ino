@@ -29,13 +29,6 @@ rudder.attach(rudderpin);                 //Links the rudder to its pin
 
 void loop(){
 
-// POSITION LIGHT
-
-digitalWrite(ledpin, HIGH);           // turn the LED on (HIGH is the voltage level)
-delay(1000);                          // wait for a second
-digitalWrite(ledpin, LOW);            // turn the LED off by making the voltage LOW
-delay(1000);                          // wait for a second
-
 // BT CONTROLS
 
 if(Serial.available() > 0)            // Send data only when you receive data:
