@@ -1,0 +1,30 @@
+// Pin connected to the temperature sensor 
+int tempPin = 0;
+
+// Placeholder for the temperature value
+int tempReading;
+
+float voltage;
+
+void setup() {
+  // Comunication with serial monitor
+  Serial.begin(9600);
+
+}
+
+void loop() {
+
+  // Read voltage value from sensor pin between 0 and 1024
+  tempReading = analogRead(tempPin);
+
+  Serial.print("RAW input = ");
+  Serial.print(tempReading);
+
+  float temperatureC = tempReading * 0.48828125;
+  Serial.print(" - Temperature: ");
+  Serial.print(temperatureC);
+  Serial.println(" Degrees C");
+
+  delay(1000);
+  
+}
