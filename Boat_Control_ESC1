@@ -1,21 +1,19 @@
 // CONTROL OF THE RC BOAT OVER BLUETOOTH WITH HC-05.
 // HARDWARE CONFIGURATION 2 DOF: RUDDER AND DC BRUSHED MOTOR WITH ESC. NON PROPORTIONAL CONTROLS 
 
-#include <Servo.h>            //The servo library is necessary when controlling motors and servos
+#include <Servo.h>              //The servo library is necessary when controlling motors and servos
 
-#define rudderpin 9
-#define motorpin 10
+const int rudderpin 9
+const int motorpin 10
 
-char data = 0;                   //Variable for storing received BT data
+char data = 0;                  //Variable for storing received BT data
 
-Servo rudder;                 //Create an obj rudder associated to a servo
+Servo rudder;                   //Create an obj rudder associated to a servo
 Servo motor;                    //Create an obj ESC associated to the motor
 
 void setup() 
 {
 Serial.begin(115200);                     //Sets the data rate in bits per second (baud) for serial data transmission
-
-pinMode(positionlightpin, OUTPUT);        
 
 rudder.attach(rudderpin);                 //Links the rudder to its pin
 motor.attach(motorpin);                   //Links the motor to its pin
