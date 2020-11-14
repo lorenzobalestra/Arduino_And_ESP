@@ -5,6 +5,8 @@
 # Description:  Setup for and how to use the ESP Device NodeMCU8266 #
 #####################################################################
 
+### Requirements
+This guide has been verified for Arduino IDE version 1.8.3.
 
 ### Setup
 
@@ -12,13 +14,17 @@
 
 http://arduino.esp8266.com/stable/package_esp8266com_index.json
 
-2) If you haven't already, plug the device in
+2) Navigate to Tools > Boards > Board Manager > Find the package called esp8266 > Select Install (Version 2.7.4 is verified)
 
-3) Navigate to Tools > Port > choose the port for the device
+3) If you haven't already, plug the device in
 
-4) Navigate to Tools > Boards > ESP8266 Boards > NodeMCU 1.0 (ESP-12E Module) 
+4) Navigate to Tools > Port > choose the port for the device
+
+5) Navigate to Tools > Boards > ESP8266 Boards > NodeMCU 1.0 (ESP-12E Module) 
 
 ### Usage
+
+With the ESP Device connected, follow the steps below:
 
 1) Open the file you want to upload
 
@@ -28,6 +34,6 @@ http://arduino.esp8266.com/stable/package_esp8266com_index.json
 
 ### Test WiFi Scan
 
-1) Choose the WiFi scan file and follow the "### Usage" procedure
+1) Choose the WiFi scan file and follow the "Usage" procedure
 
 2) Open the terminal in arduino to receive the output from the ESP device (Ctrl+Shift+M)
