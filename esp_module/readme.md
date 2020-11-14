@@ -1,9 +1,7 @@
-#####################################################################
-# Author: 	Bent Haugaløkken 				    #
-# Contact: 	github 						    #
-# Date:   	November, 2020					    #
+# Author: 	Bent Haugaløkken 				    
+# Contact: 	github 						   
+# Date:   	November, 2020					    
 # Description:  Setup for and how to use the ESP Device NodeMCU8266 #
-#####################################################################
 
 ### Requirements
 This guide has been verified for Arduino IDE version 1.8.3.
