@@ -1,0 +1,64 @@
+// SCript for reading the PWM signal from the RC reciever
+
+#include <Servo.h>  
+
+const int CH_1_PIN = 11;      // Reading the PWM input from CH1 using pin 11
+const int CH_2_PIN = 9;       // Reading the PWM input from CH2 using pin 9
+const int servopin = 10;      // Writing a PWM output for the steering servo
+
+const int deadzone = 30;      // Defines the deadzone for the controller
+
+Servo servo;
+
+void setup() {
+  Serial.begin(9600);                           // Starts communication with the serial monitor 
+  servo.attach(servopin);                       // Pairs the servo with the servopin
+}
+
+void loop() {
+  int ch_2 = pulseIn(CH_2_PIN, HIGH, 25000);    // Reads the PWM input from channel 2 of the RC reciever
+  delay(10);                                    // Delay is necessary as the two PWM signals are too close to each other to be read in sequence
+  int ch_1 = pulseIn(CH_1_PIN, HIGH, 25000);    // Reads the PWM input from channel 1 of the RC reciever
+
+  int servo_input = PulseToPWM_Servo(ch_1);
+
+    
+
+
+}
+
+int PulseToPWM_H_Bridge(int pulse){
+
+  if ( pulse > 1000){
+    pulse = map(pulse, 1000, 2000, -500, 500);
+    pulse = constrain(pulse, -255, 255);
+  }
+  else {
+    pulse = 0;
+  }
+  
+  if (abs(pulse) <= deadzone){
+    pulse = 0;
+  }
+
+  return pulse;
+  
+}
+
+int PulseToPWM_Servo(int pulse){
+
+  if ( pulse > 1000){
+    pulse = map(pulse, 1000, 2000, -20, 200);
+    pulse = constrain(pulse, 0, 180);
+  }
+  else {
+    pulse = 0;
+  }
+  
+  if (abs(pulse) <= deadzone){
+    pulse = 0;
+  }
+
+  return pulse;
+  
+}
